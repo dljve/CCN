@@ -10,14 +10,13 @@ TODO:
     For development, it is advised to first implement your work in PyCharm and then port your code to a notebook.
 """
 
-import chainer
-import numpy as np
-from chainer import cuda, Function, gradient_check, report, training, utils, Variable
-from chainer import datasets, iterators, optimizers, serializers
-from chainer import Link, Chain, ChainList
 import chainer.functions as F
 import chainer.links as L
+from chainer import Chain
+from chainer import iterators, optimizers
+from chainer import report, training
 from chainer.training import extensions
+
 import utils
 
 train, test = utils.get_mnist(n_train=100, n_test=100, n_dim=1, with_label=True)
