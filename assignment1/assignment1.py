@@ -16,7 +16,6 @@ from chainer import Chain
 from chainer import iterators, optimizers
 from chainer import report, training
 from chainer.training import extensions
-
 import utils
 
 train, test = utils.get_mnist(n_train=100, n_test=100, n_dim=1, with_label=True)
@@ -24,6 +23,7 @@ train, test = utils.get_mnist(n_train=100, n_test=100, n_dim=1, with_label=True)
 # Batch size 32
 train_iter = iterators.SerialIterator(train, batch_size=32, shuffle=True)
 test_iter = iterators.SerialIterator(test, batch_size=32, repeat=False, shuffle=False)
+
 
 class MLP(Chain):
     def __init__(self, n_units, n_out):
@@ -48,7 +48,8 @@ class Classifier(Chain):
         accuracy = F.accuracy(y, t)
         report({'loss': loss, 'accuracy' : accuracy}, self)
         return loss
-    
+
+
 model = L.Classifier(MLP(10, 10))  # the input size, 784, is inferred
 optimizer = optimizers.SGD()
 optimizer.setup(model)
