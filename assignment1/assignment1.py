@@ -41,6 +41,7 @@ class MLP(Chain):
 class Classifier(Chain):
     def __init__(self,predictor):
         super(Classifier, self).__init__()
+        self.predictor = predictor
         
     def __call__(self, x, t):
         y = self.predictor(x)
